@@ -64,7 +64,6 @@
             }
         },
         "transport": {
-            "protocol": "serial",
             "sync": {
                 "matrix_state": true
             },
