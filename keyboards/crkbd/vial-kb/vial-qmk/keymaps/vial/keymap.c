@@ -9,7 +9,7 @@
 //// map combo names to their keys and the key they trigger
 //combo_t key_combos[] = {
 //    [COMBO_LayerConfig] = COMBO(combo1, MO(5)),
-//};
+//}
 
 #ifdef LAYOUT_split_3x6_3_ex2
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
@@ -86,7 +86,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
                                                                         KC_TRNS,       KC_TRNS,       KC_TRNS,            KC_TRNS,       KC_TRNS,       KC_TRNS
   //                                                            |--------------+--------------+--------------|    |--------------+--------------+--------------|
   )
-}
+};
 #else
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 {
