@@ -1,4 +1,5 @@
 {
 	"dotnet.preferCSharpExtension": true,
-	"dotnet.defaultSolution": "src/vial-kb/vial-qmk/vial-nckiser.sln"
+	"dotnet.defaultSolution": "src/vial-kb/vial-qmk/vial-nckiser.sln",
+	"C_Cpp.dimInactiveRegions": false
 }
