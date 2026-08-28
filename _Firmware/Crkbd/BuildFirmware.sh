@@ -11,7 +11,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_DIR="$(cd "$SCRIPT_DIR/../.." && pwd)"
 
-QMK_DIR="$REPO_DIR/src/vial-kb/vial-qmk"
+QMK_DIR="$REPO_DIR/src/vial-qmk"
 FIRMWARE_DIR="$SCRIPT_DIR"
 
 FIRMWARE_NAME="crkbd_rev4_1_vial.uf2"
