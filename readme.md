@@ -1,40 +1,35 @@
-# KBD firmware
+# Crkbd VIAL Firmware
 
-## How to build
+VIAL firmware for the **Corne (Crkbd) Rev4.1**.
 
-## 1. Setting Up Your QMK Environment
+This repository contains a self-contained VIAL-QMK source tree, the
+Corne Rev4.1 VIAL configuration, the custom drag-scroll module, and
+the build script used to produce the firmware.
 
-Please see https://docs.qmk.fm/#/newbs_getting_started and set up 1 to 3.
+## Supported firmware
 
-## 2. Getting source files
+- Keyboard: `crkbd/rev4_1`
+- Keymap: `vial`
+- Firmware: `crkbd_rev4_1_vial.uf2`
 
-Please get source files of `qmk/qmk_firmware` and `vial-kb/vial-qmk`
-```sh
-make git-submodule
-```
+This repository is intentionally focused on the Corne VIAL firmware.
+Legacy VIA, LSKBD, and other keyboard-specific material is not included.
 
-## 3. Building firmwares
+## Repository structure
 
-### for VIA
-
-```sh
-make qmk-clean
-kb=crkbd make qmk-init
-kb=crkbd kr=rev4_1/standard km=via make qmk-compile
-```
-A built data will be stored on `keyboards/crkbd/qmk/qmk_firmware/.build`\
-Please change `kb`, `kr` and `km` when build other.
-
-### for Vial
-```sh
-make vial-qmk-clean
-kb=crkbd make vial-qmk-init
-kb=crkbd kr=rev4_1/standard km=vial make vial-qmk-compile
-```
-A built data will be stored on `keyboards/crkbd/vial-kb/vial-qmk/.build`\
-Please change `kb`, `kr` and `km` when build other.
-
-### All cleaning and building
-```sh
-make update-all
-```
+```text
+Crkbd-VIAL/
+├── Firmware/
+│   └── Crkbd/
+│       ├── BuildFirmware.sh
+│       └── crkbd_rev4_1_vial.uf2
+│
+└── src/
+    └── vial-qmk/
+        └── keyboards/
+            └── crkbd/
+                ├── rev4_1/
+                └── keymaps/
+                    └── vial/
+                        └── modules/
+                            └── drag_scroll/
