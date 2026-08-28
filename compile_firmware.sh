@@ -12,12 +12,7 @@ cd "$QMK_DIR"
 
 echo "→ Compiling $FIRMWARE..."
 
-docker run --rm -it \
-  -w /qmk_firmware \
-  -v "$QMK_DIR:/qmk_firmware" \
-  -e SKIP_GIT=1 \
-  ghcr.io/qmk/qmk_cli \
-  sh -c 'qmk compile -kb crkbd/rev4_1 -km vial'
+qmk compile -kb crkbd/rev4_1 -km vial
 
 echo "→ Moving firmware..."
 
@@ -29,4 +24,5 @@ echo
 echo "Firmware:"
 echo "$FIRMWARE_DIR/$FIRMWARE"
 echo
+
 ls -lh "$FIRMWARE_DIR/$FIRMWARE"
