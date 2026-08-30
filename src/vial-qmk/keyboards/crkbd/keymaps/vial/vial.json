@@ -9,9 +9,9 @@
     },
     "customKeycodes": [
         {
-            "name": "DRAG_SCROLL",
-            "title": "Drag Scroll",
-            "shortName": "DRAG_SCROLL"
+            "name": "HID_DRAG_SCROLL",
+            "title": "HID Drag Scroll",
+            "shortName": "HID_DS"
         },
         {
             "name": "ALT_CLK",
@@ -35,8 +35,8 @@
         },
         {
             "name": "LED_DRAG_SCROLL",
-            "title": "Drag Scroll LED",
-            "shortName": "DRAG_LED"
+            "title": "LED Drag Scroll",
+            "shortName": "LED_DS"
         }
     ],
     "layouts": {

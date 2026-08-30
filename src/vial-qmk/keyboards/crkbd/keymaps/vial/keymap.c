@@ -9,12 +9,12 @@
 
 enum custom_keycodes {
 
-    HID_DragScroll = QK_KB_0,
+    HID_DragScroll,
+    LED_DragScroll,
     ALT_CLK,
     GUI_CLK,
     SHIFT_CLK,
     CTRL_CLK,
-    LED_DragScroll,
 
 };
 
