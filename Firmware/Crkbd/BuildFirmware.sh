@@ -6,6 +6,7 @@ set -euo pipefail
 # Builds: crkbd/rev4_1:vial
 #
 # Native QMK build — no Docker.
+# Uses the Arm GNU Toolchain 15.3 explicitly.
 # All paths are derived from the script's location.
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -21,15 +22,23 @@ ROOT_FIRMWARE="$QMK_DIR/$FIRMWARE_NAME"
 BUILD_TARGET="crkbd/rev4_1"
 KEYMAP="vial"
 
+ARM_TOOLCHAIN="/Applications/ArmGNUToolchain/15.3.rel1/arm-none-eabi/bin"
+
 printf '\n=== CRKBD VIAL FIRMWARE BUILD ===\n\n'
 
-if ! command -v qmk >/dev/null 2>&1; then
-    echo "ERROR: qmk command not found."
-    echo "Please install/configure QMK CLI first."
+if [[ ! -x "$ARM_TOOLCHAIN/arm-none-eabi-gcc" ]]; then
+    echo "ERROR: Arm GNU Toolchain 15.3 was not found."
+    echo "Expected:"
+    echo "  $ARM_TOOLCHAIN/arm-none-eabi-gcc"
     exit 1
 fi
 
-echo "→ QMK is ready."
+echo "→ Arm GNU Toolchain:"
+"$ARM_TOOLCHAIN/arm-none-eabi-gcc" --version | head -n 1
+
+echo "→ QMK directory:"
+echo "  $QMK_DIR"
+
 echo "→ Building $BUILD_TARGET:$KEYMAP..."
 echo
 
@@ -39,7 +48,7 @@ rm -f "$FIRMWARE_DIR/$FIRMWARE_NAME"
 
 cd "$QMK_DIR"
 
-qmk compile -kb "$BUILD_TARGET" -km "$KEYMAP"
+PATH="$ARM_TOOLCHAIN:$PATH" make "$BUILD_TARGET:$KEYMAP"
 
 echo
 echo "→ Checking firmware output..."
