@@ -1,103 +1,171 @@
-# Crkbd VIAL
+# Crkbd-VIAL
 
-VIAL firmware configuration for the **Corne rev4.1**.
+Custom VIAL firmware for the Corne Rev4.1.
 
-This repository contains the VIAL keymap and custom firmware components for the `crkbd/rev4_1` target.
+## Overview
 
-## Firmware Build
+This repository contains a VIAL-enabled QMK firmware build for the Corne Rev4.1.
 
-The firmware is built natively on macOS using the QMK Make build system and the Arm GNU Toolchain.
+The project deliberately separates firmware functionality from the keyboard layout:
 
-**Docker is not required.**
+- QMK provides the firmware and custom functionality.
+- VIAL provides the complete user keyboard layout.
+- The `.vil` file is the authoritative layout configuration.
+- `keymap.c` contains firmware logic and only a minimal fallback layout.
 
-The repository includes a dedicated build script:
+The complete user layout is therefore maintained in VIAL and is not duplicated in the QMK source.
 
-```text
-Firmware/Crkbd/BuildFirmware.sh
-```
+## Firmware target
 
-### Build the firmware
+    crkbd/rev4_1:vial
 
-From any directory, execute:
+## Repository structure
 
-```bash
-/Users/matthieu/Documents/GitHub/Crkbd-VIAL/Firmware/Crkbd/BuildFirmware.sh
-```
+    Firmware/Crkbd/
+    ├── BuildFirmware.sh
+    └── crkbd_rev4_1_vial.uf2
 
-The script:
+    src/vial-qmk/
+    ├── keyboards/crkbd/keymaps/vial/
+    │   ├── keymap.c
+    │   └── rules.mk
+    └── modules/drag_scroll/
 
-1. Locates the repository and the bundled `vial-qmk` source tree automatically.
-2. Uses the Arm GNU Toolchain 15.3 installed at:
+## Building
 
-   ```text
-   /Applications/ArmGNUToolchain/15.3.rel1/arm-none-eabi/bin
-   ```
-3. Builds:
+The recommended build method is the project build script.
 
-   ```text
-   crkbd/rev4_1:vial
-   ```
-4. Creates:
+From the repository root:
 
-   ```text
-   crkbd_rev4_1_vial.uf2
-   ```
-5. Copies the resulting firmware to:
+    ./Firmware/Crkbd/BuildFirmware.sh
 
-   ```text
-   Firmware/Crkbd/crkbd_rev4_1_vial.uf2
-   ```
+The script builds:
 
-### Important
+    crkbd/rev4_1:vial
 
-Do **not** use:
+The generated firmware is:
 
-```bash
-qmk compile -kb crkbd/rev4_1 -km vial
-```
+    Firmware/Crkbd/crkbd_rev4_1_vial.uf2
 
-The QMK CLI installed on this system does not expose the `compile` subcommand.
+## Manual build
 
-The build script uses the native QMK Make system instead:
+The firmware can also be built directly from the bundled QMK source.
 
-```bash
-cd /Users/matthieu/Documents/GitHub/Crkbd-VIAL/src/vial-qmk
-PATH="/Applications/ArmGNUToolchain/15.3.rel1/arm-none-eabi/bin:$PATH" make crkbd/rev4_1:vial
-```
+From the repository root:
 
-You normally do **not** need to execute this command manually. Use `BuildFirmware.sh`.
+    cd src/vial-qmk
+    make crkbd/rev4_1:vial
 
-## Firmware Output
+The ARM GNU toolchain must be available in the system PATH.
 
-After a successful build:
+No developer-specific filesystem path is required.
 
-```text
-Firmware/Crkbd/crkbd_rev4_1_vial.uf2
-```
+## Flashing
 
-This is the UF2 firmware file to flash to the Corne rev4.1.
+After building, flash:
 
-## Repository Structure
+    Firmware/Crkbd/crkbd_rev4_1_vial.uf2
 
-```text
-Crkbd-VIAL/
-├── Firmware/
-│   └── Crkbd/
-│       ├── BuildFirmware.sh
-│       └── crkbd_rev4_1_vial.uf2
-├── src/
-│   └── vial-qmk/
-│       └── ...
-└── README.md
-```
+to the Corne Rev4.1 using the normal RP2040 UF2 bootloader procedure.
 
-## Build Environment
+After flashing, open VIAL and load the desired `.vil` configuration.
 
-* **Keyboard:** Corne rev4.1
-* **Firmware:** VIAL
-* **Build system:** QMK Make
-* **Target:** `crkbd/rev4_1:vial`
-* **Compiler:** Arm GNU Toolchain 15.3.1
-* **Platform:** macOS
-* **Docker:** Not required
+## VIAL layout
 
+The complete keyboard layout is configured through VIAL.
+
+The `.vil` configuration is the source of truth for:
+
+- Layer assignments
+- Key assignments
+- Tap Dance assignments
+- VIAL configuration
+
+The full user layout should not be recreated in `keymap.c`.
+
+This separation prevents the firmware source and VIAL configuration from becoming two competing sources of truth.
+
+## Custom firmware functionality
+
+The firmware provides:
+
+- Drag scrolling
+- Scroll-lock HID control
+- Modified mouse clicks
+- QMK mouse keys
+- RGB controls
+- Encoder support
+- Custom firmware keycodes
+
+The custom drag-scroll module is located at:
+
+    src/vial-qmk/modules/drag_scroll/
+
+## Custom keycodes
+
+The firmware defines:
+
+    HID_DragScroll
+    LED_DragScroll
+    ALT_CLK
+    GUI_CLK
+    SHIFT_CLK
+    CTRL_CLK
+
+These keycodes implement firmware functionality.
+
+Their assignment to physical keys is performed through VIAL.
+
+## Tap Dance
+
+Tap Dance assignments are configured through VIAL.
+
+They are not maintained as a duplicate full keyboard layout in `keymap.c`.
+
+To restore the configured Tap Dance assignments, load the appropriate `.vil` configuration in VIAL.
+
+## Source of truth
+
+Firmware functionality belongs in:
+
+    src/vial-qmk/
+
+The user keyboard layout belongs in:
+
+    .vil
+
+The minimal fallback layout in `keymap.c` exists only because QMK requires a keymap definition for compilation and introspection.
+
+It is not intended to represent the user's actual keyboard configuration.
+
+## Development workflow
+
+For a firmware change:
+
+    ./Firmware/Crkbd/BuildFirmware.sh
+
+Then:
+
+1. Flash the generated `.uf2`.
+2. Open VIAL.
+3. Load the desired `.vil` configuration.
+4. Verify the layout.
+5. Test the firmware functionality.
+
+## Hardware
+
+Target hardware:
+
+    Corne Rev4.1
+
+QMK/VIAL target:
+
+    crkbd/rev4_1:vial
+
+## Build script
+
+The project build entry point is:
+
+    Firmware/Crkbd/BuildFirmware.sh
+
+The script uses repository-relative paths and does not depend on a developer-specific filesystem location.
