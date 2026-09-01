@@ -1191,7 +1191,7 @@ static uint8_t breathe_calc(uint8_t pos) {
 // Effects
 #ifdef RGBLIGHT_EFFECT_BREATHING
 
-__attribute__((weak)) const uint8_t RGBLED_BREATHING_INTERVALS[] PROGMEM = {30, 20, 10, 5};
+__attribute__((weak)) const uint8_t RGBLED_BREATHING_INTERVALS[] PROGMEM = {60, 45, 30, 20};
 
 void rgblight_effect_breathing(animation_status_t *anim) {
     uint8_t val = breathe_calc(anim->pos);
