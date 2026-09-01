@@ -151,7 +151,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT_split_3x6_3_ex2(
 
         /* Row 0 — LEFT: 7 keys */
-        KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+        QK_BOOT, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
 
         /* Row 0 — RIGHT: 7 keys */
         KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
@@ -189,7 +189,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT_split_3x6_3(
 
         /* Row 0 — LEFT */
-        KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+        QK_BOOT, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
 
         /* Row 0 — RIGHT */
         KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
