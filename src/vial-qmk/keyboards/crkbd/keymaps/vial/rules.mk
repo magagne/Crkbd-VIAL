@@ -9,8 +9,8 @@ MOUSEKEY_ENABLE     = yes
 OLED_ENABLE         = no
 OLED_DRIVER         = SSD1306
 EXTRAKEY_ENABLE     = no
-COMBO_ENABLE        = no
-QMK_SETTINGS       = no
+COMBO_ENABLE        = yes
+QMK_SETTINGS        = no
 ENCODER_MAP_ENABLE = yes
 
 SRC += modules/drag_scroll/drag_scroll.c
