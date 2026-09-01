@@ -47,11 +47,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
         case LED_DragScroll:
 
-            if (record->event.pressed) {
-                register_code(KC_SCRL);
-            } else {
-                unregister_code(KC_SCRL);
-            }
+            tap_code(KC_SCRL);
 
             return false;
 
