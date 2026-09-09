@@ -10,25 +10,8 @@
 enum custom_keycodes {
 
     HID_DragScroll = QK_KB_0,
-    ALT_CLK,
-    GUI_CLK,
-    SHIFT_CLK,
-    CTRL_CLK,
     LED_DragScroll,
 };
-
-
-/* ---------------------------------------------------------------------------
- * Modified mouse click helper
- * ------------------------------------------------------------------------- */
-
-static void send_modified_click(uint8_t modifier) {
-
-    register_code(modifier);
-    tap_code(KC_BTN1);
-    unregister_code(modifier);
-
-}
 
 
 /* ---------------------------------------------------------------------------
@@ -37,7 +20,8 @@ static void send_modified_click(uint8_t modifier) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
-    switch (keycode) {
+    switch (keycode)
+    {
 
         case HID_DragScroll:
 
@@ -50,45 +34,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             tap_code(KC_SCRL);
 
             return false;
-
-
-        case ALT_CLK:
-
-            if (record->event.pressed) {
-                send_modified_click(KC_LALT);
-            }
-
-            return false;
-
-
-        case GUI_CLK:
-
-            if (record->event.pressed) {
-                send_modified_click(KC_LGUI);
-            }
-
-            return false;
-
-
-        case SHIFT_CLK:
-
-            if (record->event.pressed) {
-                send_modified_click(KC_LSFT);
-            }
-
-            return false;
-
-
-        case CTRL_CLK:
-
-            if (record->event.pressed) {
-                send_modified_click(KC_LCTL);
-            }
-
-            return false;
-
     }
-
+rs
     return true;
 }
 

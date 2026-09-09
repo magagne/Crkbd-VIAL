@@ -22,7 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define VIAL_UNLOCK_COMBO_ROWS {0, 0}
 #define VIAL_UNLOCK_COMBO_COLS {0, 1}
 
-#define TAPPING_TERM 180
+#define TAPPING_TERM 500
 
 //#define USE_MATRIX_I2C
 /* Select hand configuration */
