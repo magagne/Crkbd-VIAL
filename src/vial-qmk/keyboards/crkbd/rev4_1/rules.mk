@@ -1,3 +1,3 @@
 SERIAL_DRIVER = vendor
 
-COMBO_ENABLE = yes
+COMBO_ENABLE = no
