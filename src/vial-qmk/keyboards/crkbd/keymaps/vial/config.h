@@ -49,5 +49,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif
 
 
-//#define VIAL_COMBO_ENTRIES 8
+#define VIAL_COMBO_ENTRIES 8
 

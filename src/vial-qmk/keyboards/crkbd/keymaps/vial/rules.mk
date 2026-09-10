@@ -9,7 +9,7 @@ MOUSEKEY_ENABLE     = yes
 OLED_ENABLE         = no
 OLED_DRIVER         = SSD1306
 EXTRAKEY_ENABLE     = no
-COMBO_ENABLE        = no
+COMBO_ENABLE        = yes
 QMK_SETTINGS        = no
 ENCODER_MAP_ENABLE = yes
 
