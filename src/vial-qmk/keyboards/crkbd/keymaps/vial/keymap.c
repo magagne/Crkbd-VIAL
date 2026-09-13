@@ -86,13 +86,13 @@ void housekeeping_task_user(void) {
 
 
  Mac:
-~   = RALT(KC_RBRACKET)
+~   = RALT(KC_RBRACKET) or RALT(KC_RBRC)
 \   = RALT(KC_GRAVE)
 |   = RALT(KC_MINUS)
 /   = KC_KP_SLASH
 
 Windows:
-~   = RCTL(KC_RBRACKET)
+~   = RCTL(KC_RBRACKET) or RCTL(KC_RBRC)
 \   = LSFT(KC_GRAVE)
 |   = RALT(KC_GRAVE)
 /   = KC_KP_SLASH
@@ -107,7 +107,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
   [0] = LAYOUT_split_3x6_3_ex2
   (
   //|--------------------------------------------------------------------------------------------------------|    |--------------+--------------+--------------+--------------+--------------+------------------+------------------|
-              KC_NO,          KC_Q,          KC_W,          KC_F,          KC_P,          KC_B,         KC_NO,              KC_NO,          KC_J,          KC_L,          KC_U,          KC_Y, RALT(KC_RBRACKET),             KC_NO,
+              KC_NO,          KC_Q,          KC_W,          KC_F,          KC_P,          KC_B,         KC_NO,              KC_NO,          KC_J,          KC_L,          KC_U,          KC_Y,     RALT(KC_RBRC),             KC_NO,
   //|--------------+--------------+--------------+--------------+--------------+--------------+--------------|    |--------------+--------------+--------------+--------------+--------------+------------------+------------------|
               KC_NO,          KC_A,          KC_R,          KC_S,          KC_T,          KC_G,         KC_NO,              KC_NO,          KC_M,          KC_N,          KC_E,          KC_I,              KC_O,             KC_NO,
   //|--------------+--------------+--------------+--------------+--------------+--------------+--------------|    |--------------+--------------+--------------+--------------+--------------+------------------+------------------|
@@ -143,7 +143,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
   [3] = LAYOUT_split_3x6_3_ex2
   (
   //|--------------------------------------------------------------------------------------------------------|    |--------------+--------------+--------------+--------------+--------------+------------------+------------------|
-              KC_NO,          KC_Q,          KC_W,          KC_F,          KC_P,          KC_B,         KC_NO,              KC_NO,          KC_J,          KC_L,          KC_U,          KC_Y,  RCTL(KC_RBRACKET),             KC_NO,
+              KC_NO,          KC_Q,          KC_W,          KC_F,          KC_P,          KC_B,         KC_NO,              KC_NO,          KC_J,          KC_L,          KC_U,          KC_Y,     RCTL(KC_RBRC),             KC_NO,
   //|--------------+--------------+--------------+--------------+--------------+--------------+--------------|    |--------------+--------------+--------------+--------------+--------------+------------------+------------------|
               KC_NO,          KC_A,          KC_R,          KC_S,          KC_T,          KC_G,         KC_NO,              KC_NO,          KC_M,          KC_N,          KC_E,          KC_I,              KC_O,             KC_NO,
   //|--------------+--------------+--------------+--------------+--------------+--------------+--------------|    |--------------+--------------+--------------+--------------+--------------+------------------+------------------|
@@ -179,7 +179,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
   [6] = LAYOUT_split_3x6_3_ex2
   (
   //|--------------------------------------------------------------------------------------------------------|    |--------------+--------------+--------------+--------------+--------------+------------------+------------------|
-            KC_TRNS,         KC_NO,         KC_NO, OSM(MOD_HYPR),         KC_NO,         KC_NO,       KC_TRNS,            KC_TRNS,         KC_NO,       KC_KP_7,       KC_KP_8,       KC_KP_9,        KC_NUMLOCK,           KC_TRNS,
+            KC_TRNS,         KC_NO,         KC_NO, OSM(MOD_HYPR),         KC_NO,         KC_NO,       KC_TRNS,            KC_TRNS,         KC_NO,       KC_KP_7,       KC_KP_8,       KC_KP_9,       KC_NUM_LOCK,           KC_TRNS,
   //|--------------+--------------+--------------+--------------+--------------+--------------+--------------|    |--------------+--------------+--------------+--------------+--------------+------------------+------------------|
             KC_TRNS,       KC_LALT,       KC_LGUI,       KC_LSFT,       KC_LCTL,         KC_NO,       KC_TRNS,            KC_TRNS,   KC_KP_MINUS,       KC_KP_4,       KC_KP_5,       KC_KP_6,       KC_KP_SLASH,           KC_TRNS,
   //|--------------+--------------+--------------+--------------+--------------+--------------+--------------|    |--------------+--------------+--------------+--------------+--------------+------------------+------------------|
@@ -203,7 +203,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
   [8] = LAYOUT_split_3x6_3_ex2
   (
   //|--------------------------------------------------------------------------------------------------------|    |--------------+--------------+--------------+--------------+--------------+------------------+------------------|
-            KC_TRNS,         KC_NO,         KC_NO,HID_DragScroll,LED_DragScroll, KC_SCROLLLOCK,       KC_TRNS,            KC_TRNS,         KC_NO,         KC_NO,         KC_NO,         KC_NO,             KC_NO,           KC_TRNS,
+            KC_TRNS,         KC_NO,         KC_NO,HID_DragScroll,LED_DragScroll,KC_SCROLL_LOCK,       KC_TRNS,            KC_TRNS,         KC_NO,         KC_NO,         KC_NO,         KC_NO,             KC_NO,           KC_TRNS,
   //|--------------+--------------+--------------+--------------+--------------+--------------+--------------|    |--------------+--------------+--------------+--------------+--------------+------------------+------------------|
             KC_TRNS,         KC_NO,       KC_BTN3,       KC_BTN2,       KC_BTN1,         KC_NO,       KC_TRNS,            KC_TRNS,       KC_MS_L,       KC_MS_D,       KC_MS_U,       KC_MS_R,             KC_NO,           KC_TRNS,
   //|--------------+--------------+--------------+--------------+--------------+--------------+--------------|    |--------------+--------------+--------------+--------------+--------------+------------------+------------------|
@@ -279,14 +279,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 #endif
 
-
-/* ===========================================================================
- * ENCODER MAP
- *
- * Minimal fallback only.
- * The actual Vial layout/configuration remains external.
- * =========================================================================== */
-
 #ifdef ENCODER_MAP_ENABLE
 
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
@@ -298,7 +290,76 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
         ENCODER_CCW_CW(KC_NO, KC_NO),
     },
 
-};
+    [1] = {
+        ENCODER_CCW_CW(KC_NO, KC_NO),
+        ENCODER_CCW_CW(KC_NO, KC_NO),
+        ENCODER_CCW_CW(KC_NO, KC_NO),
+        ENCODER_CCW_CW(KC_NO, KC_NO),
+    },
 
+    [2] = {
+        ENCODER_CCW_CW(KC_NO, KC_NO),
+        ENCODER_CCW_CW(KC_NO, KC_NO),
+        ENCODER_CCW_CW(KC_NO, KC_NO),
+        ENCODER_CCW_CW(KC_NO, KC_NO),
+    },
+
+    [3] = {
+        ENCODER_CCW_CW(KC_NO, KC_NO),
+        ENCODER_CCW_CW(KC_NO, KC_NO),
+        ENCODER_CCW_CW(KC_NO, KC_NO),
+        ENCODER_CCW_CW(KC_NO, KC_NO),
+    },
+
+    [4] = {
+        ENCODER_CCW_CW(KC_NO, KC_NO),
+        ENCODER_CCW_CW(KC_NO, KC_NO),
+        ENCODER_CCW_CW(KC_NO, KC_NO),
+        ENCODER_CCW_CW(KC_NO, KC_NO),
+    },
+
+    [5] = {
+        ENCODER_CCW_CW(KC_NO, KC_NO),
+        ENCODER_CCW_CW(KC_NO, KC_NO),
+        ENCODER_CCW_CW(KC_NO, KC_NO),
+        ENCODER_CCW_CW(KC_NO, KC_NO),
+    },
+
+    [6] = {
+        ENCODER_CCW_CW(KC_NO, KC_NO),
+        ENCODER_CCW_CW(KC_NO, KC_NO),
+        ENCODER_CCW_CW(KC_NO, KC_NO),
+        ENCODER_CCW_CW(KC_NO, KC_NO),
+    },
+
+    [7] = {
+        ENCODER_CCW_CW(KC_NO, KC_NO),
+        ENCODER_CCW_CW(KC_NO, KC_NO),
+        ENCODER_CCW_CW(KC_NO, KC_NO),
+        ENCODER_CCW_CW(KC_NO, KC_NO),
+    },
+
+    [8] = {
+        ENCODER_CCW_CW(KC_NO, KC_NO),
+        ENCODER_CCW_CW(KC_NO, KC_NO),
+        ENCODER_CCW_CW(KC_NO, KC_NO),
+        ENCODER_CCW_CW(KC_NO, KC_NO),
+    },
+
+    [9] = {
+        ENCODER_CCW_CW(KC_NO, KC_NO),
+        ENCODER_CCW_CW(KC_NO, KC_NO),
+        ENCODER_CCW_CW(KC_NO, KC_NO),
+        ENCODER_CCW_CW(KC_NO, KC_NO),
+    },
+
+    [10] = {
+        ENCODER_CCW_CW(KC_NO, KC_NO),
+        ENCODER_CCW_CW(KC_NO, KC_NO),
+        ENCODER_CCW_CW(KC_NO, KC_NO),
+        ENCODER_CCW_CW(KC_NO, KC_NO),
+    },
+
+};
 
 #endif
