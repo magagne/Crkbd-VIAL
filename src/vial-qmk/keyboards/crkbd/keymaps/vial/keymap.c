@@ -34,6 +34,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             tap_code(KC_SCRL);
 
             return false;
+
     }
 
     return true;
@@ -215,9 +216,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
   [9] = LAYOUT_split_3x6_3_ex2
   (
   //|--------------------------------------------------------------------------------------------------------|    |--------------+--------------+--------------+--------------+--------------+------------------+------------------|
-            KC_TRNS,       RGB_M_P,       RGB_M_B,       RGB_M_R,       RGB_M_SN,      RGB_M_K,       KC_TRNS,            KC_TRNS,         KC_NO,         KC_NO,         KC_NO,         KC_NO,             KC_NO,           KC_TRNS,
+            KC_TRNS,       RGB_M_P,       RGB_M_B,       RGB_M_R,       RGB_M_SN,      RGB_M_K,         DF(0),            KC_TRNS,         KC_NO,         KC_NO,         KC_NO,         KC_NO,             KC_NO,           KC_TRNS,
   //|--------------+--------------+--------------+--------------+--------------+--------------+--------------|    |--------------+--------------+--------------+--------------+--------------+------------------+------------------|
-            KC_TRNS,       RGB_MOD,       RGB_VAI,       RGB_HUI,       RGB_SAI,       RGB_SPI,       KC_TRNS,            KC_TRNS,         KC_NO,         KC_NO,         KC_NO,         KC_NO,             KC_NO,           KC_TRNS,
+            KC_TRNS,       RGB_MOD,       RGB_VAI,       RGB_HUI,       RGB_SAI,       RGB_SPI,         DF(3),            KC_TRNS,         KC_NO,         KC_NO,         KC_NO,         KC_NO,             KC_NO,           KC_TRNS,
   //|--------------+--------------+--------------+--------------+--------------+--------------+--------------|    |--------------+--------------+--------------+--------------+--------------+------------------+------------------|
             KC_TRNS,      RGB_RMOD,       RGB_VAD,       RGB_HUD,       RGB_SAD,       RGB_SPD,                                            KC_NO,         KC_NO,         KC_NO,         KC_NO,             KC_NO,           KC_TRNS,
   //|--------------+--------------+--------------+--------------+--------------+--------------+--------------|    |--------------+--------------+--------------+--------------+--------------+------------------+------------------|
