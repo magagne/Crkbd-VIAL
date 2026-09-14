@@ -14,26 +14,6 @@
             "shortName": "HID_DS"
         },
         {
-            "name": "ALT_CLK",
-            "title": "Alt Click",
-            "shortName": "ALT_CLK"
-        },
-        {
-            "name": "GUI_CLK",
-            "title": "GUI Click",
-            "shortName": "GUI_CLK"
-        },
-        {
-            "name": "SHIFT_CLK",
-            "title": "Shift Click",
-            "shortName": "SHIFT_CLK"
-        },
-        {
-            "name": "CTRL_CLK",
-            "title": "Ctrl Click",
-            "shortName": "CTRL_CLK"
-        },
-        {
             "name": "LED_DRAG_SCROLL",
             "title": "LED Drag Scroll",
             "shortName": "LED_DS"
