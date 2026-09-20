@@ -1,5 +1,6 @@
 #include QMK_KEYBOARD_H
 
+#include "auto_mouse_layer.h"
 #include "raw_hid.h"
 #include "timer.h"
 

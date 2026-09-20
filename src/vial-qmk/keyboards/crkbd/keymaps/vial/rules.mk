@@ -14,4 +14,4 @@ QMK_SETTINGS        = no
 ENCODER_MAP_ENABLE = yes
 
 SRC += modules/drag_scroll/drag_scroll.c
-SRC += auto_mouse_layer.c
+SRC += modules/auto_mouse_layer/auto_mouse_layer.c

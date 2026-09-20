@@ -1,8 +1,7 @@
 #include QMK_KEYBOARD_H
 
 #include "modules/drag_scroll/drag_scroll.h"
-
-void auto_mouse_layer_task(void);
+#include "modules/auto_mouse_layer/auto_mouse_layer.h"
 
 
 /* ---------------------------------------------------------------------------
