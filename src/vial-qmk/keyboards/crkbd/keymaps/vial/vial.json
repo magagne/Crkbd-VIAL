@@ -17,8 +17,12 @@
             "name": "LED_DRAG_SCROLL",
             "title": "LED Drag Scroll",
             "shortName": "LED_DS"
-        }
-    ],
+        },
+        {
+            "name": "LCLK_LCLK",
+            "title": "Left Double Click",
+            "shortName": "LCLK_2X"
+        }],
     "layouts": {
         "labels": [
             [

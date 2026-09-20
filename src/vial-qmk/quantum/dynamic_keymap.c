@@ -21,6 +21,7 @@
 #include "progmem.h"
 #include "send_string.h"
 #include "keycodes.h"
+#include "quantum_keycodes.h"
 #include "action_tapping.h"
 #include "wait.h"
 #include <string.h>
@@ -292,8 +293,15 @@ void dynamic_keymap_reset(void) {
 #endif
 
 #ifdef VIAL_TAP_DANCE_ENABLE
-    vial_tap_dance_entry_t td = { KC_NO, KC_NO, KC_NO, KC_NO, TAPPING_TERM };
     for (size_t i = 0; i < VIAL_TAP_DANCE_ENTRIES; ++i) {
+        vial_tap_dance_entry_t td =
+            { KC_NO, KC_NO, KC_NO, KC_NO, TAPPING_TERM };
+
+        if (i == 0) {
+            td.on_tap = KC_LBRC;
+            td.on_hold = LSFT(KC_LBRC);
+        }
+
         dynamic_keymap_set_tap_dance(i, &td);
     }
 #endif
