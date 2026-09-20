@@ -192,6 +192,45 @@ The custom keycodes are:
 
 The DragScroll implementation is independent of the Auto Mouse Layer implementation.
 
+## Tap Dance
+
+Tap Dance is implemented as a separate module:
+
+    src/vial-qmk/keyboards/crkbd/keymaps/vial/modules/tap_dance/
+
+The module provides:
+
+    td_accent_init()
+
+The current implementation configures Vial Tap Dance entry 0.
+
+### Accent Tap Dance
+
+Tap Dance entry 0 provides two behaviors:
+
+    Tap   → [
+    Hold  → {
+
+The hold action is implemented as:
+
+    LSFT(KC_LBRC)
+
+Double-tap and tap-hold actions are not configured.
+
+The entry uses the default QMK tapping term.
+
+The Tap Dance entry is initialized during keyboard startup by:
+
+    td_accent_init()
+
+The physical key assignment uses:
+
+    TD(0)
+
+The assignment is present on the symbol layers where the Accent Tap Dance is required.
+
+The Tap Dance implementation is independent of DragScroll and HID Auto Mouse Layer.
+
 ## Custom keycodes
 
 The firmware currently defines:
