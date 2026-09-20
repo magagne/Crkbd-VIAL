@@ -2,6 +2,7 @@
 
 #include "modules/drag_scroll/drag_scroll.h"
 #include "modules/auto_mouse_layer/auto_mouse_layer.h"
+#include "modules/tap_dance/tap_dance.h"
 
 
 /* ---------------------------------------------------------------------------
@@ -61,6 +62,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 void keyboard_post_init_user(void) {
 
     drag_scroll_init();
+    tap_dance_init();
 
 }
 
