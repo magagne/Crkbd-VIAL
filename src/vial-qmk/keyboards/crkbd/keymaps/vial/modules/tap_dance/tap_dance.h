@@ -1,3 +1,3 @@
 #pragma once
 
-void tap_dance_init(void);
+void td_accent_init(void);

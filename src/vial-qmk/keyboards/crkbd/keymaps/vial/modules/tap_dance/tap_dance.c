@@ -3,7 +3,7 @@
 #include "dynamic_keymap.h"
 #include "vial.h"
 
-void tap_dance_init(void) {
+void td_accent_init(void) {
     vial_tap_dance_entry_t entry = {
         .on_tap = KC_LBRC,
         .on_hold = LSFT(KC_LBRC),
