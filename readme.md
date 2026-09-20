@@ -25,11 +25,18 @@ The complete user layout is therefore maintained in VIAL and is not duplicated i
     ├── BuildFirmware.sh
     └── crkbd_rev4_1_vial.uf2
 
-    src/vial-qmk/
-    ├── keyboards/crkbd/keymaps/vial/
-    │   ├── keymap.c
-    │   └── rules.mk
-    └── modules/drag_scroll/
+    src/vial-qmk/keyboards/crkbd/keymaps/vial/
+    ├── keymap.c
+    ├── rules.mk
+    └── modules/
+        ├── drag_scroll/
+        │   ├── drag_scroll.c
+        │   └── drag_scroll.h
+        └── auto_mouse_layer/
+            ├── auto_mouse_layer.c
+            └── auto_mouse_layer.h
+
+The custom firmware modules are kept with the VIAL keymap so their implementation and integration points remain together.
 
 ## Building
 
@@ -89,28 +96,108 @@ This separation prevents the firmware source and VIAL configuration from becomin
 
 The firmware provides:
 
+- HID Auto Mouse Layer
 - Drag scrolling
-- Scroll-lock HID control
+- Scroll Lock HID control for DragScroll
 - Modified mouse clicks
 - QMK mouse keys
 - RGB controls
 - Encoder support
 - Custom firmware keycodes
 
-The custom drag-scroll module is located at:
+The custom firmware modules are located at:
 
-    src/vial-qmk/modules/drag_scroll/
+    src/vial-qmk/keyboards/crkbd/keymaps/vial/modules/
 
-## Custom keycodes
+## HID Auto Mouse Layer
 
-The firmware defines:
+HID Auto Mouse Layer automatically enables the mouse layer when the Ploopy Nano-2 reports trackball activity.
+
+The feature has two host paths.
+
+### macOS
+
+On macOS, the Ploopy Nano-2 sends an Auto Mouse Layer activity packet through Raw HID.
+
+The packet uses:
+
+    Byte 0: 0x41
+    Byte 1: 0x01
+
+The QMK firmware receives this packet through `raw_hid_receive_kb()` and activates the macOS mouse layer.
+
+For the current layout:
+
+    Base layer 0
+    Mouse layer 3
+    Timeout 450 ms
+
+The normal 450 ms timeout applies to this Raw HID/macOS path.
+
+### Windows
+
+On Windows, Auto Mouse Layer uses the Caps Lock LED state as the state signal.
+
+The Ploopy Nano-2 sends a Caps Lock press/release through the host:
+
+    Trackball movement starts  → Caps Lock ON
+    Trackball remains moving   → no repeated Caps Lock traffic
+    400 ms without movement    → Caps Lock OFF
+
+Windows reports the resulting Caps Lock LED state back to the keyboard.
+
+The QMK firmware then maps that state to the Windows mouse layer:
+
+    Caps Lock ON  → Windows mouse layer ON
+    Caps Lock OFF → Windows mouse layer OFF
+
+For the current layout:
+
+    Base layer 4
+    Mouse layer 7
+
+The Windows path is state-based and does not use the 450 ms QMK Auto Mouse timeout.
+
+### Layer separation
+
+The two Auto Mouse paths intentionally use different signaling mechanisms:
+
+    macOS   → Raw HID activity → layer 3 → 450 ms timeout
+    Windows → Caps Lock state  → layer 7 → LED state controls layer
+
+The Windows path is only active while the Windows base layer (layer 4) is selected.
+
+Changing away from the relevant base layer disables the corresponding Auto Mouse state.
+
+## DragScroll
+
+DragScroll is implemented as a separate module:
+
+    src/vial-qmk/keyboards/crkbd/keymaps/vial/modules/drag_scroll/
+
+The module provides:
+
+    drag_scroll_init()
+    drag_scroll_set()
+    drag_scroll_task()
+
+The custom keycodes are:
 
     HID_DragScroll
     LED_DragScroll
-    ALT_CLK
-    GUI_CLK
-    SHIFT_CLK
-    CTRL_CLK
+
+`HID_DragScroll` controls the DragScroll HID transport.
+
+`LED_DragScroll` sends a Scroll Lock toggle to the host. Scroll Lock is reserved for DragScroll state and is not used by HID Auto Mouse Layer.
+
+The DragScroll implementation is independent of the Auto Mouse Layer implementation.
+
+## Custom keycodes
+
+The firmware currently defines:
+
+    HID_DragScroll
+    LED_DragScroll
 
 These keycodes implement firmware functionality.
 
@@ -151,6 +238,10 @@ Then:
 3. Load the desired `.vil` configuration.
 4. Verify the layout.
 5. Test the firmware functionality.
+
+When changing a custom firmware module, keep its header and source together under:
+
+    src/vial-qmk/keyboards/crkbd/keymaps/vial/modules/
 
 ## Hardware
 
