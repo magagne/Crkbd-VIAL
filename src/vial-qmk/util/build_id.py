@@ -1,6 +1,8 @@
-def main():
+import random
 
-    print("#define BUILD_ID ((uint32_t)0x3BA029)")
+
+def main():
+    print("#define BUILD_ID ((uint32_t)0x{:08X})".format(random.randrange(0, 2 ** 24 - 1)))
 
 
 if __name__ == "__main__":
