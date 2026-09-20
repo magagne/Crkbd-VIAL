@@ -2,6 +2,8 @@
 
 #include "modules/drag_scroll/drag_scroll.h"
 
+void auto_mouse_layer_task(void);
+
 
 /* ---------------------------------------------------------------------------
  * Custom keycodes
@@ -55,6 +57,7 @@ void keyboard_post_init_user(void) {
 void housekeeping_task_user(void) {
 
     drag_scroll_task();
+    auto_mouse_layer_task();
 
 }
 
