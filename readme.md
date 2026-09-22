@@ -32,9 +32,12 @@ The complete user layout is therefore maintained in VIAL and is not duplicated i
         ├── drag_scroll/
         │   ├── drag_scroll.c
         │   └── drag_scroll.h
-        └── auto_mouse_layer/
-            ├── auto_mouse_layer.c
-            └── auto_mouse_layer.h
+        ├── auto_mouse_layer/
+        │   ├── auto_mouse_layer.c
+        │   └── auto_mouse_layer.h
+        └── tap_dance/
+            ├── tap_dance.c
+            └── tap_dance.h
 
 The custom firmware modules are kept with the VIAL keymap so their implementation and integration points remain together.
 
