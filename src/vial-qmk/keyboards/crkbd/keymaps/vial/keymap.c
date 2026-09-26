@@ -1,7 +1,7 @@
 #include QMK_KEYBOARD_H
 
-#include "modules/drag_scroll/drag_scroll.h"
-#include "modules/auto_mouse_layer/auto_mouse_layer.h"
+#include "modules/ploopy/drag_scroll/drag_scroll.h"
+#include "modules/ploopy/auto_mouse_layer/auto_mouse_layer.h"
 #include "modules/tap_dance/tap_dance.h"
 
 

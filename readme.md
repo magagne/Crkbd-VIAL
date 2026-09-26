@@ -29,12 +29,13 @@ The complete user layout is therefore maintained in VIAL and is not duplicated i
     ├── keymap.c
     ├── rules.mk
     └── modules/
-        ├── drag_scroll/
-        │   ├── drag_scroll.c
-        │   └── drag_scroll.h
-        ├── auto_mouse_layer/
-        │   ├── auto_mouse_layer.c
-        │   └── auto_mouse_layer.h
+        ├── ploopy/
+        │   ├── drag_scroll/
+        │   │   ├── drag_scroll.c
+        │   │   └── drag_scroll.h
+        │   └── auto_mouse_layer/
+        │       ├── auto_mouse_layer.c
+        │       └── auto_mouse_layer.h
         └── tap_dance/
             ├── tap_dance.c
             └── tap_dance.h
@@ -176,7 +177,7 @@ Changing away from the relevant base layer disables the corresponding Auto Mouse
 
 DragScroll is implemented as a separate module:
 
-    src/vial-qmk/keyboards/crkbd/keymaps/vial/modules/drag_scroll/
+    src/vial-qmk/keyboards/crkbd/keymaps/vial/modules/ploopy/drag_scroll/
 
 The module provides:
 

@@ -14,7 +14,7 @@ TAP_DANCE_ENABLE    = yes
 QMK_SETTINGS        = no
 ENCODER_MAP_ENABLE = yes
 
-SRC += modules/drag_scroll/drag_scroll.c
-SRC += modules/auto_mouse_layer/auto_mouse_layer.c
+SRC += modules/ploopy/drag_scroll/drag_scroll.c
+SRC += modules/ploopy/auto_mouse_layer/auto_mouse_layer.c
 
 SRC += modules/tap_dance/tap_dance.c
