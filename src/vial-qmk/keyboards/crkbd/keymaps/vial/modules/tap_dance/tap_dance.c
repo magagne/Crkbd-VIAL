@@ -5,8 +5,8 @@
 
 void td_accent_init(void) {
     vial_tap_dance_entry_t entry = {
-        .on_tap = KC_LBRC,
-        .on_hold = LSFT(KC_LBRC),
+        .on_tap = KC_LBRC, /* ^ */
+        .on_hold = LSFT(KC_LBRC), /* ¨ */
         .on_double_tap = 0,
         .on_tap_hold = 0,
         .custom_tapping_term = 0,
