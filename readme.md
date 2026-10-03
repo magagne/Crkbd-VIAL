@@ -1,4 +1,4 @@
-# Crkbd-VIAL
+# QMK-Firmware
 
 Custom VIAL firmware for the Corne Rev4.1.
 
@@ -134,9 +134,10 @@ For the current layout:
 
     Base layer 0
     Mouse layer 3
-    Timeout 450 ms
+    Timeout: configurable
+    Practical tuning range: approximately 300–700 ms
 
-The normal 450 ms timeout applies to this Raw HID/macOS path.
+The Auto Mouse Layer timeout is configurable. A practical tuning range is approximately **300–700 ms**, depending on the desired balance between responsiveness and accidental layer activation.
 
 ### Windows
 
@@ -160,13 +161,13 @@ For the current layout:
     Base layer 4
     Mouse layer 7
 
-The Windows path is state-based and does not use the 450 ms QMK Auto Mouse timeout.
+The Windows path is state-based and does not use the QMK Auto Mouse timeout.
 
 ### Layer separation
 
 The two Auto Mouse paths intentionally use different signaling mechanisms:
 
-    macOS   → Raw HID activity → layer 3 → 450 ms timeout
+    macOS   → Raw HID activity → layer 3 → 300–700 ms practical tuning range
     Windows → Caps Lock state  → layer 7 → LED state controls layer
 
 The Windows path is only active while the Windows base layer (layer 4) is selected.
