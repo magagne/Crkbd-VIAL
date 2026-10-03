@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-# Crkbd VIAL firmware builder
+# QMK-Firmware firmware builder
 # Builds: crkbd/rev4_1:vial
 #
 # Native QMK build — no Docker.
@@ -22,17 +22,27 @@ ROOT_FIRMWARE="$QMK_DIR/$FIRMWARE_NAME"
 BUILD_TARGET="crkbd/rev4_1"
 KEYMAP="vial"
 
-ARM_TOOLCHAIN="/Applications/ArmGNUToolchain/15.3.rel1/arm-none-eabi/bin"
+ARM_GCC="${ARM_GCC:-$(command -v arm-none-eabi-gcc || true)}"
 
-printf '\n=== CRKBD VIAL FIRMWARE BUILD ===\n\n'
-
-if [[ ! -x "$ARM_TOOLCHAIN/arm-none-eabi-gcc" ]]; then
-    echo "ERROR: Arm GNU Toolchain 15.3 was not found."
-    echo "Expected:"
-    echo "  $ARM_TOOLCHAIN/arm-none-eabi-gcc"
+if [[ -z "$ARM_GCC" || ! -x "$ARM_GCC" ]]; then
+    echo "ERROR: arm-none-eabi-gcc was not found."
+    echo "Please install the Arm GNU Toolchain 15.3.Rel1 and set ARM_GCC or add it to PATH."
     exit 1
 fi
 
+ARM_GCC_VERSION="$("$ARM_GCC" --version | head -n 1)"
+
+if [[ "$ARM_GCC_VERSION" != *"15.3.1"* ]]; then
+    echo "ERROR: The required Arm GNU Toolchain 15.3.Rel1 was not found."
+    echo "Detected:"
+    echo "  $ARM_GCC_VERSION"
+    echo "Compiler:"
+    echo "  $ARM_GCC"
+    exit 1
+fi
+
+ARM_TOOLCHAIN="$(dirname "$ARM_GCC")"
+printf '\n=== QMK-FIRMWARE BUILD ===\n\n'
 echo "→ Arm GNU Toolchain:"
 "$ARM_TOOLCHAIN/arm-none-eabi-gcc" --version | head -n 1
 
