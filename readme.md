@@ -147,7 +147,6 @@ The Ploopy Nano-2 sends a Caps Lock press/release through the host:
 
     Trackball movement starts  → Caps Lock ON
     Trackball remains moving   → no repeated Caps Lock traffic
-    400 ms without movement    → Caps Lock OFF
 
 Windows reports the resulting Caps Lock LED state back to the keyboard.
 
